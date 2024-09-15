@@ -56,7 +56,7 @@ export default function Navbar() {
             </svg>
           </button>
           <div
-            className={`${isMenuOpen? 'block' : 'hidden'} w-full md:block md:w-auto`}
+            className={`${isMenuOpen? 'block' : 'hidden'} w-full lg:w-auto grow lg:flex justify-between`}
             id="navbar-default"
           >
             {token && (
