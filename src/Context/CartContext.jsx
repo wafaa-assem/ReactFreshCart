@@ -8,6 +8,7 @@ export default function CartContextProvidor({ children }) {
   // state
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [cartID, setCartID] = useState(null);
+  const returnUrl = `${window.location.origin}/#`;
   // add to cart
   async function addProductToCart(pID) {
     return axios
@@ -104,7 +105,7 @@ export default function CartContextProvidor({ children }) {
   async function checkOut(cartID, url, formValues) {
     return axios
       .post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=${url}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=${returnUrl}`,
         {
           shippingAddress: formValues,
         },
