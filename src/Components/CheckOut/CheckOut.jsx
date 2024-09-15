@@ -17,7 +17,7 @@ export default function CheckOut() {
     },
     onSubmit: async (values) => {
       setIsLoading(true);
-      const res = await checkOut(cartID, "http://localhost:5173", values);
+      const res = await checkOut(cartID, `${window.location.origin}/#`, values);
       console.log("res", res);
       setIsLoading(false);
       if (res.data.status === "success") {
