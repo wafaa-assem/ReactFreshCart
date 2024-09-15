@@ -8,9 +8,14 @@ import { FaGithub, FaHeart, FaLinkedin } from "react-icons/fa6";
 import { WishlistContext } from "../../Context/WishlistContext";
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, setToken } = useContext(userContext);
   const { numOfCartItems } = useContext(CartContext);
   const { count } = useContext(WishlistContext);
+
+  function toggleMenu() {
+    setIsMenuOpen(!isMenuOpen);
+  }
 
   function handleSignOut() {
     setToken(null);
@@ -26,11 +31,12 @@ export default function Navbar() {
             <img src={logo} className="h-8" alt="E-commerce Logo" />
           </Link>
           <button
+            onClick={toggleMenu}
             data-collapse-toggle="navbar-default"
             type="button"
             className="inline-flex items-center ms-auto p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
-            aria-expanded="false"
+            aria-expanded={isMenuOpen}
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -50,7 +56,7 @@ export default function Navbar() {
             </svg>
           </button>
           <div
-            className="hidden w-full lg:w-auto grow lg:flex justify-between"
+            className={`${isMenuOpen? 'block' : 'hidden'} w-full md:block md:w-auto`}
             id="navbar-default"
           >
             {token && (
